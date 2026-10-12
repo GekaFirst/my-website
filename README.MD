@@ -10,7 +10,7 @@
 
 | Светлая тема | Тёмная тема |
 | --- | --- |
-| ![Светлая тема](img/screenshot-light.png) | ![Тёмная тема](img/screenshot-dark.png) |
+| ![Светлая тема](img/light.png) | ![Тёмная тема](img/dark.png) |
 
 ## О проекте
 
