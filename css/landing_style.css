@@ -2,6 +2,11 @@ html {
   scroll-behavior: smooth;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 :root {
   --color-bg: #f5f5f5;
   --color-text: #121212;
@@ -178,7 +183,17 @@ p {
   margin-top: 20px;
 }
 
-
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 
+  
 .company-card {
   text-decoration: none;
   color: inherit;
@@ -187,16 +202,20 @@ p {
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform var(--anim-speed) ease, box-shadow var(--anim-speed) ease;
-  animation: fadeInScale 0.5s ease both;
+  animation: fadeInUp 0.8s ease-out forwards;
 }
+
+.company-card:nth-child(1) { animation-delay: 0.05s; }
+.company-card:nth-child(2) { animation-delay: 0.25s; }
+.company-card:nth-child(3) { animation-delay: 0.45s; }
 
 .company-card--servers { border-top: 6px solid var(--card-color-servers); }
 .company-card--ai { border-top: 6px solid var(--card-color-ai); }
 .company-card--dev { border-top: 6px solid var(--card-color-dev); }
 
 .company-card:hover {
-  transform: translateY(var(--anim-hover-lift)) scale(var(--anim-hover-scale));
-  box-shadow: 0 16px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.18);
 }
 
 .company-card__image {
@@ -386,6 +405,7 @@ p {
 @media (max-width: 768px) {
   .content-area {
     padding: 16px;
+    box-sizing: border-box;
   }
 
   .site-header {
@@ -393,6 +413,29 @@ p {
     gap: 16px;
     text-align: center;
   }
+  .company-services__grid {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .company-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 20px;
+    box-sizing: border-box;
+  }
+
+  .company-card:hover {
+    transform: translateY(-8px);
+  }
+
+  .company-card:nth-child(1) { animation-delay: 0.05s; }
+  .company-card:nth-child(2) { animation-delay: 0.20s; }
+  .company-card:nth-child(3) { animation-delay: 0.35s; }
 }
 
 @media (max-width: 600px) {
