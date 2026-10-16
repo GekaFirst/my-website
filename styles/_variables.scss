@@ -1,9 +1,7 @@
-// _variables.scss
-
 // --- Базовые цвета (светлая тема) ---
 $color-bg: #f5f5f5;
-$color-text: #121212;
-$color-muted: #555;
+$color-text: hsl(0, 0%, 7%);
+$color-muted: #000000;
 $color-border: #ddd;
 
 // Акцентные цвета
@@ -23,36 +21,57 @@ $transition: 0.3s ease;
 $anim-speed: 0.3s;
 
 // Цвета карточек
-$card-color-servers: #8e44ad;
+$card-color-servers: #ad16ee;
 $card-color-ai: #2980b9;
 $card-color-dev: #27ae60;
 
 
 // --- CSS-переменные для браузера (:root) ---
-// Они подхватываются автоматически при prefers-color-scheme: dark
 :root {
-  --color-bg: #121212;          // Тёмный фон
-  --color-text: #ffffff;        // Белый текст
-  --color-muted: #aaaaaa;       // Серый текст
-  --color-border: #333;         // Тёмная граница
-  
-  --color-primary: #ba68c8;     // Чуть светлее для читаемости
-  --color-primary-dark: #9c27b0;
-  --color-primary-light: #d185ff;
-  
-  --color-error: #ef5350;
-  --color-success: #66bb6a;
-  
-  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.3); // Тени плотнее на тёмном
-  --shadow-focus: 0 0 0 3px rgba(186, 104, 200, 0.3);
-  
-  --card-color-servers: #a556c0;
-  --card-color-ai: #4e9ed6;
-  --card-color-dev: #39cc7d;
+  --color-bg: #{$color-bg};
+  --color-text: #{$color-text};
+  --color-muted: #{$color-muted};
+  --color-border: #{$color-border};
+
+  --color-primary: #{$color-primary};
+  --color-primary-dark: #{$color-primary-dark};
+  --color-primary-light: #{$color-primary-light};
+
+  --color-error: #{$color-error};
+  --color-success: #{$color-success};
+
+  --shadow-sm: #{$shadow-sm};
+  --shadow-focus: #{$shadow-focus};
+
+  --card-color-servers: #{$card-color-servers};
+  --card-color-ai: #{$card-color-ai};
+  --card-color-dev: #{$card-color-dev};
 }
 
+// Переопределение ТОЛЬКО для тёмной темы
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #121212;
+    --color-text: #ffffff;
+    --color-muted: #ffffff;
+    --color-border: #333;
 
-// --- SCSS-переменные для светлой темы (используем в базовом CSS) ---
+    --color-primary: #ba68c8;
+    --color-primary-dark: #9c27b0;
+    --color-primary-light: #d185ff;
+
+    --color-error: #ef5350;
+    --color-success: #66bb6a;
+
+    --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.3);
+    --shadow-focus: 0 0 0 3px rgba(186, 104, 200, 0.3);
+
+    --card-color-servers: #a556c0;
+    --card-color-ai: #4e9ed6;
+    --card-color-dev: #39cc7d;
+  }
+}
+
 $v-color-bg: $color-bg;
 $v-color-text: $color-text;
 $v-color-muted: $color-muted;
@@ -70,21 +89,3 @@ $v-anim-speed: $anim-speed;
 $v-card-color-servers: $card-color-servers;
 $v-card-color-ai: $card-color-ai;
 $v-card-color-dev: $card-color-dev;
-
-
-// --- SCSS-переменные для тёмной темы (используем в @media dark) ---
-// Мы берём значения из :root, чтобы они были гибкими
-$d-color-bg: var(--color-bg);
-$d-color-text: var(--color-text);
-$d-color-muted: var(--color-muted);
-$d-color-border: var(--color-border);
-$d-color-primary: var(--color-primary);
-$d-color-primary-dark: var(--color-primary-dark);
-$d-color-primary-light: var(--color-primary-light);
-$d-color-error: var(--color-error);
-$d-color-success: var(--color-success);
-$d-shadow-sm: var(--shadow-sm);
-$d-shadow-focus: var(--shadow-focus);
-$d-card-color-servers: var(--card-color-servers);
-$d-card-color-ai: var(--card-color-ai);
-$d-card-color-dev: var(--card-color-dev);

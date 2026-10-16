@@ -17,10 +17,10 @@
   <body>
     
     <header class="site-header">
-      <h1 class="site-header__title">IT-компания</h1>
+      <div class="site-header__title">IT-компания</div>
       <nav class="site-header__nav" aria-label="Навигация по сайту">
         <a class="site-header__link" href="#about-company">О компании</a>
-        <a class="site-header__link" href="#company-services">Услуги компании</a>
+        <a class="site-header__link" href="#company-services">Наши задачи</a>
         <a class="site-header__link" href="#tech-stack">Технологии и направления</a>
         <a class="site-header__link" href="#contact-form">Свяжитесь с нами</a>
       </nav>
@@ -41,23 +41,25 @@
       </section>
 
       <section class="company-services" id="company-services">
-        <h2 class="company-services__title">Услуги компании</h2>
-        <div class="company-services__grid">
-          <a href="#" class="company-card company-card--servers">
-            <img class="company-card__image" src="img/servers.jpg" alt="Поддержка серверов" loading="lazy">
-            <span class="company-card__title">Поддержка серверов</span>
-          </a>
+        <h2 class="company-services__title">Наши задачи</h2>
+        <div class="company-services__wrapper">
+          <div class="company-services__grid">
+            <a href="#" class="company-card company-card--servers">
+              <img class="company-card__image" src="img/servers.jpg" alt="Поддержка серверов" loading="lazy">
+              <span class="company-card__title">Поддержка серверов</span>
+            </a>
+          
+            <a href="#" class="company-card company-card--ai">
+              <img class="company-card__image" src="img/al_ml.jpg" alt="Изучение и обучение ИИ" loading="lazy">
+              <span class="company-card__title">Изучение и обучение ИИ</span>
+            </a>
 
-          <a href="#" class="company-card company-card--ai">
-            <img class="company-card__image" src="img/al_ml.jpg" alt="Изучение и обучение ИИ" loading="lazy">
-            <span class="company-card__title">Изучение и обучение ИИ</span>
-          </a>
-
-          <a href="#" class="company-card company-card--dev">
-            <img class="company-card__image" src="img/dev.jpg" alt="Разработка собственных проектов" loading="lazy">
-            <span class="company-card__title">Разработка собственных проектов</span>
-          </a>
-        </div>
+            <a href="#" class="company-card company-card--dev">
+              <img class="company-card__image" src="img/dev.jpg" alt="Разработка собственных проектов" loading="lazy">
+              <span class="company-card__title">Разработка собственных проектов</span>
+            </a>
+          </div>
+         </div>
       </section>
       
       <section class="tech-stack" id="tech-stack">
