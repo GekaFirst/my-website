@@ -212,7 +212,8 @@ p {
 .company-card {
   text-decoration: none;
   color: inherit;
-  display: block;
+  display: flex;
+  flex-direction: column;
   border-radius: calc(var(--radius) * 1.2);
   position: relative;
   overflow: hidden;
@@ -271,6 +272,7 @@ p {
 }
 
 .company-card__title {
+  width: 100%;
   display: block;
   padding: 14px;
   text-align: center;
@@ -398,7 +400,7 @@ p {
 }
 
 .contact-form__error {
-  display: block;
+  display: none;
   margin-top: 6px;
   font-size: 13px;
   color: var(--color-error);
@@ -411,6 +413,7 @@ p {
 .contact-form__input:invalid:not(:placeholder-shown) + .contact-form__error {
   max-height: 20px;
   opacity: 1;
+  display: block;
 }
 
 .contact-form__submit {
