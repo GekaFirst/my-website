@@ -1,3 +1,4 @@
+//_layout.scss
 @use 'variables' as v;
 @use 'mixins' as m;
 
@@ -16,6 +17,30 @@ body {
   color: var(--color-text);
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
+}
+
+.skip-link {
+  position: absolute;       /* Вырываем из потока */
+  top: -40px;              /* Прячем за верхней границей экрана */
+  left: 0;
+  background-color: #fff;  /* Белый фон, чтобы перекрывать контент */
+  color: #b852e0;             /* Чёрный текст */
+  padding: 8px 16px;       /* Отступы внутри ссылки */
+  z-index: 9999;           /* Поверх всего остального */
+  text-decoration: none;    /* Убираем подчёркивание по умолчанию */
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+:focus-visible {
+  outline: 3px solid #ae00ff;
+  outline-offset: 4px;
+}
+
+/* Когда пользователь нажимает Tab и ссылка получает фокус — показываем её */
+.skip-link:focus {
+  top: 0;                  /* Возвращаем на экран */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Лёгкая тень для красоты */
 }
 
 // --- Анимации ---
@@ -43,10 +68,12 @@ h1 {
 }
 
 h2 {
+  text-align: left;
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 8px;
   margin-top: 32px;
   position: relative;
+  display: inline-block;     /* чтобы ширина была по тексту */
 
   &::after {
     content: "";
@@ -158,138 +185,25 @@ p {
   margin: 0 auto;
 }
 
+.about-company__title {
+  animation: fadeInUp 0.8s ease 0.1s both;
+}
+
 .about-company__text {
   font-size: 18px;
+  animation: fadeInUp 0.8s ease 0.1s both;
 }
 
 // --- Сетка услуг ---
+.company-services__title {
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
 .company-services__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: calc(1rem + 1vw);
   margin-top: 20px;
-}
-
-// --- Таблица стека ---
-.tech-stack__wrapper {
-  overflow-x: auto;
-}
-
-.tech-stack {
-  animation: fadeInUp 0.8s ease 0.3s both;
-}
-
-.tech-stack__table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  box-shadow: var(--shadow-sm);
-
-  th, td {
-    border: 1px solid var(--color-border);
-    padding: 14px 16px;
-    text-align: left;
-  }
-
-  th {
-    background-color: var(--color-bg);
-    color: var(--color-muted);
-    font-weight: 600;
-  }
-
-  tbody tr:nth-child(even) {
-    background-color: rgba(var(--color-text), 0.06);
-  }
-
-  tr:hover {
-    background-color: rgba(var(--color-text), 0.12);
-  }
-}
-
-// --- Форма контактов ---
-.contact-form__body {
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.contact-form {
-  animation: fadeInUp 0.8s ease 0.45s both;
-}
-
-.contact-form__group {
-  margin-bottom: 20px;
-}
-
-.contact-form__label {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--color-muted);
-  font-weight: 500;
-}
-
-.contact-form__input {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid var(--color-border);
-  border-radius: v.$radius;
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-size: 16px;
-  box-sizing: border-box;
-  transition: border-color v.$transition, box-shadow v.$transition;
-
-  &:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-focus);
-  }
-
-  &:valid:not(:placeholder-shown) {
-    border-color: var(--color-success);
-    box-shadow: 0 0 0 3px rgba(var(--color-success), 0.12);
-  }
-
-  &:invalid:not(:placeholder-shown) + .contact-form__error {
-    max-height: 20px;
-    opacity: 1;
-  }
-}
-
-.contact-form__error {
-  display: block;
-  margin-top: 6px;
-  font-size: 13px;
-  color: var(--color-error);
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height v.$transition, opacity v.$transition;
-}
-
-.contact-form__submit {
-  width: 100%;
-  padding: 14px;
-  @include m.button-gradient(var(--color-primary-light), var(--color-primary-dark));
-  color: white;
-  border: none;
-  border-radius: v.$radius;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all v.$transition;
-  box-shadow: 0 4px 12px rgba(139, 43, 175, 0.25);
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(139, 43, 175, 0.35);
-    filter: brightness(1.05);
-  }
-
-  &:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 6px rgba(139, 43, 175, 0.2);
-    filter: brightness(0.92);
-  }
 }
 
 // --- Футер ---
@@ -301,6 +215,7 @@ p {
   font-size: 0.95rem;
   text-align: center;
 }
+
 
 // --- Адаптив ---
 @media (max-width: 768px) {

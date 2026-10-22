@@ -21,10 +21,9 @@ $transition: 0.3s ease;
 $anim-speed: 0.3s;
 
 // Цвета карточек
-$card-color-servers: #ad16ee;
-$card-color-ai: #2980b9;
 $card-color-dev: #27ae60;
-
+$card-color-servers: #e69706;
+$card-color-ai: #ff0000;
 
 // --- CSS-переменные для браузера (:root) ---
 :root {
@@ -66,9 +65,9 @@ $card-color-dev: #27ae60;
     --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.3);
     --shadow-focus: 0 0 0 3px rgba(186, 104, 200, 0.3);
 
-    --card-color-servers: #a556c0;
-    --card-color-ai: #4e9ed6;
     --card-color-dev: #39cc7d;
+    --card-color-servers: #e69706;
+    --card-color-ai: #ff0000;
   }
 }
 
