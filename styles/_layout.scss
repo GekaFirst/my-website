@@ -1,0 +1,291 @@
+//_layout.scss
+@use 'variables' as v;
+@use 'mixins' as m;
+
+// --- Базовые стили ---
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.skip-link {
+  position: absolute;       /* Вырываем из потока */
+  top: -40px;              /* Прячем за верхней границей экрана */
+  left: 0;
+  background-color: #fff;  /* Белый фон, чтобы перекрывать контент */
+  color: #b852e0;             /* Чёрный текст */
+  padding: 8px 16px;       /* Отступы внутри ссылки */
+  z-index: 9999;           /* Поверх всего остального */
+  text-decoration: none;    /* Убираем подчёркивание по умолчанию */
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+:focus-visible {
+  outline: 3px solid #ae00ff;
+  outline-offset: 4px;
+}
+
+/* Когда пользователь нажимает Tab и ссылка получает фокус — показываем её */
+.skip-link:focus {
+  top: 0;                  /* Возвращаем на экран */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Лёгкая тень для красоты */
+}
+
+// --- Анимации ---
+@keyframes titleGlow {
+  0% { opacity: 0.6; text-shadow: 0 0 4px rgba(156, 39, 176, 0.4); }
+  50% { opacity: 1; text-shadow: 0 0 8px rgba(156, 39, 176, 0.7); }
+  100% { opacity: 0.6; text-shadow: 0 0 4px rgba(156, 39, 176, 0.4); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// --- Типографика ---
+h1, h2, .hero__title {
+  color: var(--color-text);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+
+h2 {
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 8px;
+  margin-top: 32px;
+  position: relative;
+  display: inline-block;     /* чтобы ширина была по тексту */
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: var(--color-primary);
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+p {
+  font-size: 18px;
+}
+
+// --- Шапка ---
+.site-header {
+  width: 100%;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  box-sizing: border-box;
+}
+
+.site-header__title {
+  animation: titleGlow 0.8s ease both;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.site-header__nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.site-header__link {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+
+  &:hover {
+    opacity: 0.8;
+    color: var(--color-primary);
+  }
+}
+
+// --- Hero ---
+.hero {
+  padding: calc(2rem + 2vh) 20px;
+  text-align: center;
+}
+
+.hero__container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero__title {
+  font-size: 2.8rem;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  color: var(--color-text);
+}
+
+.hero__subtitle {
+  font-size: 1.2rem;
+  color: var(--color-muted);
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero__button {
+  display: inline-block;
+  padding: 14px 32px;
+  @include m.button-gradient(var(--color-primary-light), var(--color-primary-dark));
+  color: white;
+  text-decoration: none;
+  border-radius: v.$radius;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all v.$transition;
+  @include m.box-shadow-custom(var(--color-primary-dark), 4px);
+
+  &:hover {
+    transform: translateY(-2px);
+    @include m.box-shadow-custom(var(--color-primary-dark), 6px);
+    filter: brightness(1.05);
+  }
+}
+
+// --- Контейнер ---
+.content-area {
+  box-sizing: border-box;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-company__title {
+  animation: fadeInUp 0.8s ease 0.1s both;
+}
+
+.about-company__text {
+  font-size: 18px;
+  animation: fadeInUp 0.8s ease 0.1s both;
+}
+
+// --- Сетка услуг ---
+.company-services__title {
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.company-services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: calc(1rem + 1vw);
+  margin-top: 20px;
+}
+
+// --- Футер ---
+.site-footer {
+  margin-top: 50px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+
+// --- Адаптив ---
+@media (max-width: 768px) {
+  .content-area {
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .site-header {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .tech-stack__table thead {
+    display: none;
+  }
+
+  .tech-stack__table tr {
+    display: block;
+    margin-bottom: 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+
+  .tech-stack__table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    padding: 8px 0;
+    font-size: 15px;
+    position: relative;
+
+    &::before {
+      content: attr(data-label);
+      color: var(--color-primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .content-area {
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    margin-top: 24px;
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}

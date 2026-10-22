@@ -1,0 +1,82 @@
+//_table.scss
+
+// --- Таблица стека ---
+.tech-stack__wrapper {
+  overflow-x: auto;
+}
+
+.tech-stack {
+  animation: fadeInUp 0.8s ease 0.3s both;
+}
+
+.tech-stack__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: var(--shadow-sm);
+
+  .tech-stack__table td::before {
+  content: attr(data-label) ": ";
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.8px;
+  margin-right: 12px;
+  display: inline-block;
+}
+
+  th, td {
+    border: 1px solid var(--color-border);
+    padding: 14px 16px;
+    text-align: left;
+  }
+
+  th {
+    background-color: var(--color-bg);
+    color: var(--color-muted);
+    font-weight: 600;
+    text-align: center;
+    font-size: clamp(1.5rem, 1vw, 3rem);
+    line-height: 1.1;
+    margin: 0 0 2rem 0;
+    color: var(--color-text);
+    color: #834ae6;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: rgba(var(--color-text), 0.06);
+  }
+
+  tbody tr:nth-child(1) td:nth-child(3) { color: #39cc7d; }
+  tbody tr:nth-child(2) td:nth-child(3) { color: #e69706; }
+  tbody tr:nth-child(3) td:nth-child(3) { color: #ff0000; }
+}
+
+tr:hover {
+    background-color: rgba(var(--color-text), 0.12);
+}
+
+.tech-stack__table caption {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* Цветные рамки для строк */
+.row-basic {
+  border: 2px solid #39cc7d;
+  border-radius: 8px;
+}
+
+.row-medium {
+  border: 2px solid #e69706;
+  border-radius: 8px;
+}
+
+.row-advanced {
+  border: 2px solid #ff0000;
+  border-radius: 8px;
+}
