@@ -1,0 +1,134 @@
+//_gallery-header.scss
+@use 'variables' as v;
+
+.gallery-section__title {
+    animation: fadeInUp 0.8s ease 0.3s both;
+}
+
+.gallery-wrapper {
+  display: grid;
+  gap: 2rem;
+  overflow: visible; /* Чтобы тени не обрезались при движении */
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "header header"
+    "big    small1"
+    "big    small2"
+    "small3 small4";
+}
+
+/* Карточка: анимация наведения именно тут */
+.card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: calc(#{v.$radius} * 1.2);
+  position: relative;
+  overflow: hidden;
+  box-shadow: v.$shadow-sm;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 0.3s ease;
+  animation: fadeInUp 0.8s ease-out;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+
+  &:hover::after {
+    transform: skewX(-35deg) translateX(6px);
+  }
+
+  &:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.18);
+  }
+}
+
+// Позиции в сетке — только сетка, без transform/opacity
+.area-big { grid-area: big; align-self: stretch; min-height: 100px; }
+.area-small1 { grid-area: small1; min-height: 100px; }
+.area-small2 { grid-area: small2; min-height: 100px; }
+.area-small3 { grid-area: small3; min-height: 100px; }
+.area-small4 { grid-area: small4; min-height: 100px; }
+
+// Центрирование текста
+.card-inner {
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+.card-small .card-inner { padding: 1.5rem; }
+
+.card h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-text);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.card p {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+/* Расставляем задержки, чтобы шла волна */
+.area-big {
+  animation-delay: 0.3s;
+}
+.area-small1 {
+  animation-delay: 0.4s;
+}
+.area-small2 {
+  animation-delay: 0.5s;
+}
+.area-small3 {
+  animation-delay: 0.6s;
+}
+.area-small4 {
+  animation-delay: 0.7s;
+}
+
+/* Цветные рамки для строк */
+.area-big,
+.area-small1,
+.area-small2,
+.area-small3,
+.area-small4 {
+  border: 2px solid var(--color-primary, #834ae6);
+  border-radius: v.$radius;
+}
+
+@media (max-width: 768px) {
+  .gallery-wrapper {
+    grid-template-areas:
+      "header"
+      "big"
+      "small1"
+      "small2"
+      "small3"
+      "small4";
+    grid-template-columns: 1fr;
+  }
+  .area-big,
+  .area-small1,
+  .area-small2,
+  .area-small3,
+  .area-small4 {
+    min-height: auto;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .area-big,
+  .area-small1,
+  .area-small2,
+  .area-small3,
+  .area-small4 {
+    opacity: 1;
+    animation: none;
+  }
+}
